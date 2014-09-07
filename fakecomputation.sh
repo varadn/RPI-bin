@@ -10,7 +10,7 @@ echo "chromium env..."
 sleep 1
 echo "kernel loadout..."
 sleep 1
-echo "chromium maskroot bypass..."
+echo "chromium mask asroot..."
 sleep 1
 echo "chromium passwd bypass..."
 sleep 5
