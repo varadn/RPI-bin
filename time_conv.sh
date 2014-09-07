@@ -1,0 +1,70 @@
+#!/bin/bash +x
+
+seconds=0
+
+echo  "Enter number of seconds >>>"
+read seconds
+
+tsec=$seconds
+
+if [ $seconds -gt "315359999999" ]; then
+    val=$((seconds / 315360000000))
+    seconds=$((seconds % 315360000000))
+    if [ $val > 1 ]; then
+	echo -n "$val millennia "
+    else
+	echo -n "$val millennium "
+    fi
+fi
+
+if [ $seconds -gt "3153599999" ]; then
+    century=$((seconds / 3153600000))
+    seconds=$((seconds % 3153600000))
+    if [ $century > 1 ]; then
+	echo -n "$century centuries "
+    else
+	echo -n "$century century "
+    fi
+fi
+
+if [ $seconds -gt "31535999" ]; then
+    years=$((seconds / 31536000))
+    seconds=$((seconds % 31536000))
+    echo -n "$years year(s) "
+fi
+
+if [ $seconds -gt "86399" ]; then
+    days=$((seconds / 86400))
+    seconds=$((seconds % 86400))
+ echo -n "$days day(s) "
+fi
+
+
+hours=$((seconds / 3600))
+seconds=$((seconds % 3600))
+min=$((seconds / 60))
+seconds=$((seconds % 60))
+
+
+echo "$hours hour(s) $min minute(s) $seconds second(s)"
+
+hrs=$(echo "scale=5;$tsec/3600" | bc)
+min=$(echo "scale=5;$tsec/60" | bc)
+
+
+echo "..."
+echo "Exact amts"
+echo "..."
+
+if [ $tsec -gt "31535999" ]; then
+    yrs=$(echo "scale=16;$tsec/31536000" | bc)
+    echo "$yrs yrs"
+fi
+
+if [ $tsec -gt "86399" ]; then
+    days=$(echo "scale=16;$tsec/86400" | bc)
+    echo "$days days"
+fi
+
+echo "$hrs hrs"
+echo "$min min"
