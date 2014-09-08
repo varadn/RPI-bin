@@ -1,0 +1,1 @@
+export HIGHSCORE=3
